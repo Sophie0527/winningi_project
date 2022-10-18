@@ -4,6 +4,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import MonthlyVisitorsChart from '../components/MainPage/MonthlyVisitorsChart';
 import MonthlyPostsChart from '../components/MainPage/MonthlyPostsChart';
 import AgeChart from '../components/MainPage/AgeChart';
+import MainFooter from '../components/MainPage/MainFooter';
 
 const Main = () => {
   return (
@@ -27,6 +28,7 @@ const Main = () => {
           </div>
         </PercentageBox>
         <DividingLine />
+        <MainFooter />
       </Container>
     </Layout>
   );

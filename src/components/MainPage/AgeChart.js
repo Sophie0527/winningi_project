@@ -70,7 +70,7 @@ const AgeChart = () => {
         textAlign: 'center',
       },
       autoRotate: false,
-      content: '{value}',
+      // content: '{value}',
       content: '{percentage}',
     },
     statistic: {
