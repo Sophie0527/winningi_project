@@ -20,7 +20,7 @@ const data = {
     {
       type: 'bar',
       label: '게시글 수',
-      backgroundColor: '#d9bbb8',
+      backgroundColor: '#62daab',
       data: [
         { x: '1월', y: 100 },
         { x: '2월', y: 200 },
@@ -47,10 +47,8 @@ const options = {
     mode: 'index',
   },
   plugins: {
-    responsive: false,
     title: {
       display: true,
-      text: '월별 게시글 등록수',
       font: {
         family: "'Noto Sans KR', 'serif'",
         size: '20',
@@ -127,15 +125,6 @@ const options = {
 };
 
 const MonthlyPostsChart = () => {
-  return (
-    <Line
-      type="line"
-      data={data}
-      options={options}
-      style={{
-        width: '550px',
-      }}
-    />
-  );
+  return <Line type="line" data={data} options={options} />;
 };
 export default MonthlyPostsChart;
