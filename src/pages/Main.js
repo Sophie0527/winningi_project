@@ -5,7 +5,7 @@ import MonthlyVisitorsChart from '../components/MainPage/MonthlyVisitorsChart';
 import UserAgeChart from '../components/MainPage/UserAgeChart';
 import MonthlyPostsChart from '../components/MainPage/MonthlyPostsChart';
 
-const MainPage = () => {
+const Main = () => {
   return (
     <Layout>
       <Container>
@@ -26,7 +26,7 @@ const MainPage = () => {
     </Layout>
   );
 };
-export default MainPage;
+export default Main;
 
 const Layout = styled.div`
   display: flex;
@@ -36,7 +36,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: aliceblue;
   width: 100%;
 `;
 const LeftBox = styled.div`
