@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
+import Main from './Main';
 import Borad from './Board';
 import 'antd/dist/antd.css';
 
@@ -74,7 +75,7 @@ const MainLayout = () => {
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
-          {page === '1' && <p>메인페이지</p>}
+          {page === '1' && <Main />}
           {page === '2' && <Borad />}
         </Content>
         <Footer
