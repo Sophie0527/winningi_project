@@ -20,7 +20,7 @@ const data = {
     {
       type: 'line',
       label: '방문자 수',
-      borderColor: '#608fb7',
+      borderColor: '#6395f9',
       borderWidth: 2,
       data: [
         { x: '1월', y: 1 },
@@ -48,10 +48,8 @@ const options = {
     mode: 'index',
   },
   plugins: {
-    responsive: false,
     title: {
       display: true,
-      text: '월별 방문자 추이',
       font: {
         family: "'Noto Sans KR', 'serif'",
         size: '20',
@@ -128,15 +126,6 @@ const options = {
 };
 
 const MonthlyVisitorsChart = () => {
-  return (
-    <Line
-      type="line"
-      data={data}
-      options={options}
-      style={{
-        width: '550px',
-      }}
-    />
-  );
+  return <Line type="line" data={data} options={options} />;
 };
 export default MonthlyVisitorsChart;
