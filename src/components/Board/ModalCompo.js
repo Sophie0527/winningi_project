@@ -131,6 +131,11 @@ const ModalCompo = ({ fatchData, index, isModalOpen, setIsModalOpen }) => {
                   <div style={{ marginTop: 8 }}>Upload</div>
                 </div>
               </Upload>
+              <Notice>
+                *파일이 완전히 업로드되면 버튼이 활성화 됩니다.
+                <br />
+                *이미지파일만 가능합니다.
+              </Notice>
             </Form.Item>
           </Form>
         </WriteBox>
@@ -142,4 +147,8 @@ const ModalCompo = ({ fatchData, index, isModalOpen, setIsModalOpen }) => {
 export default ModalCompo;
 const WriteBox = styled.div`
   max-width: 1200px;
+`;
+const Notice = styled.span`
+  color: red;
+  font-size: 13px;
 `;
