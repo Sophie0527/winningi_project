@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+# lululab Reservation System Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🔍 미리보기
 
-## Available Scripts
+> 메인 차트 통계페이지
 
-In the project directory, you can run:
+&nbsp; &nbsp; &nbsp;<img src="https://user-images.githubusercontent.com/100933263/196032854-6ca37684-d29a-4123-afcb-765a7378f384.gif"  width="600" height="530"/>
+<br/>
+<br/>
 
-### `npm start`
+> 게시판
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+&nbsp; &nbsp; &nbsp;<img src="https://user-images.githubusercontent.com/100933263/196032267-ee3893cc-f86b-4270-8685-09b5987ca590.gif"  width="600" height="450"/>
+<br/>
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 🚩 프로젝트 개요
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **진행기간** : 10/18~ 10/20
+- **과제주관** : Winningi
+- **참여명단** : 정억화, 손소희
+- **프로젝트 설명** : 차트페이지와 계시판을 구성하였습니다.
+- **배포** : [배포 바로가기](www.naver.com)
 
-### `npm run build`
+<br/>
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 💻 Technlogies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/javascript-ffc700?style=for-the-badge&logo=javascript&logoColor=white"> <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br/>
+<br/>
 
-### `npm run eject`
+## ⚙ 데이터 관리
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 통계와 계시판 데이터 관리 유지 를 위해 **firebase**를 사용하여 파일과 데이터를 관리 하였습니다.<br/>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ 
+<br/>
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠 구현사항과 해결방법
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> MISSION 1
 
-## Learn More
+### 차트 통계 페이지
+: 차트 라이브러리를 이용하여 다양한 차트 그래프 구현
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 1-1 &nbsp; 예약 페이지로 이동하기위해 Calendar를 활용<br/>
+- #### 디자인과 직관성이 좋은 ANTD 라이브러리에 차트 컴포넌트를 사용 하였습니다.
+  
+- #### 방문자와 게시글을 한번에 데이터로 받아와 javascript로 가공 하였습니다. <br/>
+  
+    <details>
+    <summary>Code 더보기</summary><br/>
+      
+     ```js
+  const key = Data.flatMap(Object.keys);
+  const result = [];
+  const newArray = () => {
+    const arrA = [];
+    const arrB = [];
+    for (let i = 0; i < Data.length; i++) {
+      arrA.push(Object.values(Data[i])[0].visitor);
+      arrB.push(Object.keys(Data[i])[0]);
+    }
+    arrB.reduce((_, curr, idx) => {
+      result.push({ x: curr, y: arrA[idx] });
+      return result;
+    });
+  };
+  newArray();
+        
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+     ```
+    </details>
+    
+- #### 연령 통계 차트<br/>
+  디자인적이고 심플한 원형 디자인의 그래프를 추가하였습니다.
+    
+<br/>
+<br/>
 
-### Code Splitting
+> MISSION 2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 게시판 페이지
 
-### Analyzing the Bundle Size
+#### 2-1 게시판 DB, 첨부파일 firebase로 관리 <br/>
+- #### 첨부파일 firebas 스토리지에 첨부<br/>
+ 
+    <details>
+    <summary>Code 더보기</summary><br/>
+      
+     ```js
+ const firebasGet = async () => {
+    setLoading(true);
+    await storage
+      .ref('images/' + antPics.name)
+      .put(antPics)
+      .then(snapshot => {
+        return snapshot.ref.getDownloadURL();
+      })
+      .then(url => {
+        setInputValue({
+          ...inputValue,
+          id: index + 1,
+          url: url,
+          date: writeTime,
+        });
+        setLoading(false);
+      });
+  };
+     ```
+    </details>
+    
+- #### 게시글 firebas 실시간데이터 베이스에 기록<br/>
+ 
+    <details>
+    <summary>Code 더보기</summary><br/>
+      
+     ```js
+     axios.put(
+        `https://winningi-default-rtdb.asia-southeast1.firebasedatabase.app/board/${index}.json`,
+        { ...inputValue }
+      )
+     ```
+    </details>    
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    
 
-### Making a Progressive Web App
+    
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## ⚙ 프로젝트 관리
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##### 프로젝트 관리 및 설계와 관련된 사항 [내용보기!](https://www.notion.so/wecode/13-81a1c15f26404a789850d53fb87acfc3)
