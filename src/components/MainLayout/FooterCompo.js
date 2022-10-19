@@ -9,7 +9,7 @@ const FooterComp = () => {
         textAlign: 'center',
       }}
     >
-      Ant Design ©2018 Created by Ant UED
+      13 Team
     </Footer>
   );
 };

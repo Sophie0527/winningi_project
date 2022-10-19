@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
+import styled from 'styled-components';
 const { Header } = Layout;
 
 const HeaderComp = () => {
@@ -24,8 +25,14 @@ const HeaderComp = () => {
           border: '2px solid white',
         }}
       />
+      <IdH1>13팀</IdH1>
     </Header>
   );
 };
 
 export default HeaderComp;
+
+const IdH1 = styled.h1`
+  color: white;
+  margin-left: 10px;
+`;

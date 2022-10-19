@@ -6,6 +6,7 @@ import HeaderNaviCompo from './components/MainLayout/HeaderNaviCompo';
 import FooterComp from './components/MainLayout/FooterCompo';
 import Main from './pages/Main';
 import Board from './pages/Board';
+import Read from './pages/Read';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -32,6 +33,7 @@ const Router = () => {
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/board" element={<Board />} />
+              <Route path="/read/:id" element={<Read />} />
             </Routes>
           </Content>
           <FooterComp />

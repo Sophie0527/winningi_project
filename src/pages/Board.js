@@ -1,8 +1,9 @@
-import { Form, Input, InputNumber, Popconfirm, Table, Typography } from 'antd';
+import { Form, Input, InputNumber, Table } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Write from '../components/Board/Write';
-
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import ModalCompo from '../components/Board/ModalCompo';
 const EditableCell = ({
   editing,
   dataIndex,
@@ -39,6 +40,7 @@ const EditableCell = ({
   );
 };
 const Board = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
@@ -52,15 +54,14 @@ const Board = () => {
         setData(Object.values(res.data));
       });
   };
-  console.log(data);
+
   useEffect(() => {
     fatchData();
-  }, []);
+  }, [setData]);
 
   const cancel = () => {
     setEditingKey('');
   };
-
   const columns = [
     {
       title: 'No',
@@ -71,6 +72,17 @@ const Board = () => {
       title: 'Title',
       dataIndex: 'title',
       width: '70%',
+
+      render: (text, record, index) => (
+        <TitleClick
+          key={index + 'title'}
+          onClick={() => {
+            navigate(`/read/${index}`);
+          }}
+        >
+          {text}
+        </TitleClick>
+      ),
     },
 
     {
@@ -84,7 +96,8 @@ const Board = () => {
       width: '10%',
     },
   ];
-  const mergedColumns = columns.map(col => {
+
+  const mergedColumns = columns.map((col, idx) => {
     if (!col.editable) {
       return col;
     }
@@ -92,13 +105,13 @@ const Board = () => {
       ...col,
       onCell: record => ({
         record,
-        inputType: col.dataIndex === 'age' ? 'number' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
       }),
     };
   });
+
   return (
     <Form form={form} component={false}>
       <Table
@@ -114,9 +127,18 @@ const Board = () => {
         pagination={{
           onChange: cancel,
         }}
+        scroll={{
+          x: 1300,
+        }}
       />
-      <Write index={data.length} />
+      <ModalCompo index={data.length} setData={setData} />
     </Form>
   );
 };
 export default Board;
+
+const TitleClick = styled.p`
+  :hover {
+    cursor: pointer;
+  }
+`;
