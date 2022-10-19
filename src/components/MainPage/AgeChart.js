@@ -5,7 +5,7 @@ import { Pie, measureTextWidth } from '@ant-design/plots';
 const AgeChart = () => {
   const [ageData, setAgeData] = useState([]);
   const fatchData = () => {
-    axios.get('http://localhost:3000/data/chart/age.json').then(res => {
+    axios.get('data/chart/age.json').then(res => {
       setAgeData(res.data);
     });
   };
