@@ -4,13 +4,13 @@
 
 > 메인 차트 통계페이지
 
-&nbsp; &nbsp; &nbsp;<img src="https://user-images.githubusercontent.com/100933263/196032854-6ca37684-d29a-4123-afcb-765a7378f384.gif"  width="600" height="530"/>
+&nbsp; &nbsp; &nbsp;<img src="https://raw.githubusercontent.com/oka7759/2sa_images/master/%E1%84%8C%E1%85%A6%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B51.gif"  width="600" height="530"/>
 <br/>
 <br/>
 
 > 게시판
 
-&nbsp; &nbsp; &nbsp;<img src="https://user-images.githubusercontent.com/100933263/196032267-ee3893cc-f86b-4270-8685-09b5987ca590.gif"  width="600" height="450"/>
+&nbsp; &nbsp; &nbsp;<img src="https://raw.githubusercontent.com/oka7759/2sa_images/master/%E1%84%8C%E1%85%A6%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B52.gif"  width="600" height="450"/>
 <br/>
 <br/>
 
@@ -128,7 +128,7 @@
      ```
     </details>    
 
-    
+- #### 게시글 작성, 수정 기능을 구현 했습니다.
 
     
 
