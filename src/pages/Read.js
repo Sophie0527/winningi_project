@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Button, Descriptions, PageHeader } from 'antd';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Descriptions, PageHeader } from 'antd';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import EditModalCompo from '../components/Board/EditModalCompo';
 
@@ -15,6 +15,7 @@ const Read = () => {
         `https://winningi-default-rtdb.asia-southeast1.firebasedatabase.app/board/${params.id}.json`
       )
       .then(res => setData(res.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { title, content, date, url, writer } = data;
   return (
@@ -36,7 +37,7 @@ const Read = () => {
         <img src={url} width="100%" alt="사진" />
         <p>{content}</p>
       </ContentBox>
-      <EditModalCompo data={data} index={params.id} />
+      <EditModalCompo fixdata={data} index={params.id} setData={setData} />
     </Container>
   );
 };

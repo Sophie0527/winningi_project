@@ -6,11 +6,11 @@ import { storage } from '../../firebase/firebase';
 import moment from 'moment/moment';
 import axios from 'axios';
 
-const ModalCompo = ({ setData, index }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ModalCompo = ({ fatchData, index, isModalOpen, setIsModalOpen }) => {
   const { TextArea } = Input;
   const writeTime = moment().format('MM/DD hh:mm');
   const [antPics, setAntPics] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState({
     id: '',
@@ -18,7 +18,7 @@ const ModalCompo = ({ setData, index }) => {
     content: '',
     date: '',
     url: '',
-    writer: '백수아빠',
+    writer: '팀13',
   });
 
   const { title, content, url } = inputValue;
@@ -29,6 +29,7 @@ const ModalCompo = ({ setData, index }) => {
     putWirte();
   };
   const handleCancel = () => {
+    setInputValue({ title: '', content: '' });
     setIsModalOpen(false);
   };
 
@@ -40,7 +41,6 @@ const ModalCompo = ({ setData, index }) => {
     setAntPics(e.file.originFileObj);
     firebasGet();
   };
-  console.log(inputValue);
 
   const firebasGet = async () => {
     setLoading(true);
@@ -67,7 +67,11 @@ const ModalCompo = ({ setData, index }) => {
         `https://winningi-default-rtdb.asia-southeast1.firebasedatabase.app/board/${index}.json`,
         { ...inputValue }
       )
-      .then(setIsModalOpen(false));
+      .then(res => {
+        res.status === 200 && fatchData();
+      });
+
+    setIsModalOpen(false);
   };
 
   return (

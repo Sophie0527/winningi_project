@@ -3,22 +3,24 @@ import { Form, Input, Upload, Button, Modal } from 'antd';
 import styled from 'styled-components';
 import { PlusOutlined } from '@ant-design/icons';
 import { storage } from '../../firebase/firebase';
-import moment from 'moment/moment';
+
 import axios from 'axios';
 
-const EditModalCompo = ({ data, index }) => {
+const EditModalCompo = ({ fixdata, index, setData }) => {
   const { TextArea } = Input;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [antPics, setAntPics] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState({
     title: '',
     content: '',
     url: '',
-    writer: '백수아빠',
-    id: data.id,
-    date: data.date,
+    writer: '팀13',
+    id: '',
+    date: '',
   });
+
   const { url } = inputValue;
   const showModal = () => {
     setIsModalOpen(true);
@@ -50,6 +52,8 @@ const EditModalCompo = ({ data, index }) => {
         setInputValue({
           ...inputValue,
           url: url,
+          date: fixdata.date,
+          id: fixdata.id,
         });
         setLoading(false);
       });
@@ -61,10 +65,11 @@ const EditModalCompo = ({ data, index }) => {
         `https://winningi-default-rtdb.asia-southeast1.firebasedatabase.app/board/${index}.json`,
         { ...inputValue }
       )
-      .then(setIsModalOpen(false));
+      .then(res => setData(res.data));
+
+    setIsModalOpen(false);
   };
 
-  console.log(inputValue);
   return (
     <>
       <Button type="primary" onClick={showModal}>
@@ -92,7 +97,7 @@ const EditModalCompo = ({ data, index }) => {
               <Input
                 placeholder="제목을 입력하세요"
                 name="title"
-                defaultValue={data.title}
+                defaultValue={fixdata.title}
               />
             </Form.Item>
             <Form.Item label="내용">
@@ -104,7 +109,7 @@ const EditModalCompo = ({ data, index }) => {
                 }}
                 placeholder="내용을 추가하세요"
                 name="content"
-                defaultValue={data.content}
+                defaultValue={fixdata.content}
               />
             </Form.Item>
           </Form>

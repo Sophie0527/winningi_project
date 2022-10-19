@@ -45,6 +45,13 @@ const Board = () => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = record => record.key === editingKey;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tableParams, setTableParams] = useState({
+    pagination: {
+      current: 1,
+      pageSize: 20,
+    },
+  });
   const fatchData = () => {
     axios
       .get(
@@ -57,16 +64,16 @@ const Board = () => {
 
   useEffect(() => {
     fatchData();
-  }, [setData]);
+  }, []);
 
-  const cancel = () => {
-    setEditingKey('');
-  };
   const columns = [
     {
       title: 'No',
       dataIndex: 'id',
       width: '5%',
+      render: (text, record, index) => (
+        <TitleClick key={index + 'title'}>{index + 1}</TitleClick>
+      ),
     },
     {
       title: 'Title',
@@ -124,14 +131,18 @@ const Board = () => {
         dataSource={data}
         columns={mergedColumns}
         rowClassName="editable-row"
-        pagination={{
-          onChange: cancel,
-        }}
+        pagination={tableParams.pagination}
         scroll={{
           x: 1300,
         }}
       />
-      <ModalCompo index={data.length} setData={setData} />
+      <ModalCompo
+        index={data.length}
+        setData={setData}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        fatchData={fatchData}
+      />
     </Form>
   );
 };
