@@ -94,24 +94,24 @@
     <summary>Code 더보기</summary><br/>
       
      ```js
- const firebasGet = async () => {
-    setLoading(true);
-    await storage
-      .ref('images/' + antPics.name)
-      .put(antPics)
-      .then(snapshot => {
-        return snapshot.ref.getDownloadURL();
-      })
-      .then(url => {
-        setInputValue({
-          ...inputValue,
-          id: index + 1,
-          url: url,
-          date: writeTime,
-        });
-        setLoading(false);
-      });
-  };
+       const firebasGet = async () => {
+       setLoading(true);
+       await storage
+         .ref('images/' + antPics.name)
+         .put(antPics)
+         .then(snapshot => {
+           return snapshot.ref.getDownloadURL();
+         })
+         .then(url => {
+           setInputValue({
+             ...inputValue,
+             id: index + 1,
+             url: url,
+             date: writeTime,
+           });
+           setLoading(false);
+         });
+      };
      ```
     </details>
     
