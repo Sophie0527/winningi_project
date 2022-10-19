@@ -7,17 +7,32 @@ import AgeChart from '../components/MainPage/AgeChart';
 import MainFooter from '../components/MainPage/MainFooter';
 
 const Main = () => {
+  const Data = [
+    { '1월': { visitor: 12, writer: 20 } },
+    { '2월': { visitor: 133, writer: 20 } },
+    { '3월': { visitor: 1042, writer: 10 } },
+    { '4월': { visitor: 103, writer: 201 } },
+    { '5월': { visitor: 104, writer: 201 } },
+    { '6월': { visitor: 104, writer: 20 } },
+    { '7월': { visitor: 104, writer: 210 } },
+    { '8월': { visitor: 104, writer: 20 } },
+    { '9월': { visitor: 10, writer: 210 } },
+    { '10월': { visitor: 110, writer: 210 } },
+    { '11월': { visitor: 10, writer: 201 } },
+    { '12월': { visitor: 110, writer: 210 } },
+  ];
+
   return (
     <Layout>
       <Container>
         <MonthlyBox>
           <div>
             <h3>월별 방문자 추이</h3>
-            <MonthlyVisitorsChart />
+            <MonthlyVisitorsChart Data={Data} />
           </div>
           <div>
             <h3>월별 게시글 등록수</h3>
-            <MonthlyPostsChart />
+            <MonthlyPostsChart Data={Data} />
           </div>
         </MonthlyBox>
         <DividingLine />

@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Pie, measureTextWidth } from '@ant-design/plots';
 
 const AgeChart = () => {
+  const [ageData, setAgeData] = useState([]);
+  const fatchData = () => {
+    axios.get('http://localhost:3000/data/chart/age.json').then(res => {
+      setAgeData(res.data);
+    });
+  };
+  useEffect(() => {
+    fatchData();
+  }, []);
+
   function renderStatistic(containerWidth, text, style) {
     const { width: textWidth, height: textHeight } = measureTextWidth(
       text,
@@ -25,32 +36,7 @@ const AgeChart = () => {
       scale < 1 ? 1 : 'inherit'
     };">${text}</div>`;
   }
-  const data = [
-    {
-      type: '10대',
-      value: 20,
-    },
-    {
-      type: '20대',
-      value: 35,
-    },
-    {
-      type: '30대',
-      value: 18,
-    },
-    {
-      type: '40대',
-      value: 15,
-    },
-    {
-      type: '50대',
-      value: 10,
-    },
-    {
-      type: '60대',
-      value: 20,
-    },
-  ];
+  const data = ageData;
   const config = {
     appendPadding: 10,
     data,
@@ -70,7 +56,6 @@ const AgeChart = () => {
         textAlign: 'center',
       },
       autoRotate: false,
-      // content: '{value}',
       content: '{percentage}',
     },
     statistic: {
